@@ -103,3 +103,18 @@ body.no-ar .hide-lg{display:inline-flex}
   .hint{display:none}
   .picker{left:12px;right:12px;transform:none;max-width:none}
 }
+
+/* v3 : fiche à droite sans masquer l'objet sur ordinateur ; bouton fiche sur téléphone */
+#fiche-btn[hidden]{display:none}
+@media (min-width:821px){
+  body.side-sheet model-viewer.scene{right:428px;width:auto}
+  body.side-sheet .picker{left:calc((100% - 428px) / 2)}
+  body.side-sheet .hint{left:calc((100% - 428px) / 2)}
+  body.side-sheet .ar-btn{right:452px}
+  body.side-sheet #fiche-btn{display:none}
+}
+@media (max-width:820px){
+  /* Sur téléphone, un point caché derrière la machine disparaît : plus de chevauchement. Les puces du bas y mènent. */
+  .hotspot:not([data-visible]){opacity:0;pointer-events:none}
+  .hotspot i{width:28px;height:28px;font-size:13px;line-height:28px}
+}

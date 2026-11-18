@@ -5,7 +5,7 @@ Quatre vrais objets en 3D (tronçonneuse, souffleur, roulement à billes, moteur
 Fiches d'entretien : repères généraux, à faire confirmer par l'atelier SACRI. Le bouton « Demander un devis » prépare un message mais n'envoie rien.
 
 Modèles 3D et licences :
-- Tronçonneuse : « Motorsäge Stihl » par fhernand, CC BY 4.0, https://sketchfab.com/3d-models/motorsage-stihl-61f9e45afac84e4da5f41f792f920efc (support en bois retiré, maillage allégé).
+- Tronçonneuse (v3) : « Chainsaw » par Rescue3D Assets, CC BY 4.0, https://sketchfab.com/3d-models/chainsaw-8d1c55a879b046ba940414f5ee57f401 (inscription de l'auteur retirée de la texture, mise à l'échelle 75 cm, maillage optimisé).
 - Souffleur : modèle généré par image vers 3D à partir de la photo « Moscow, Stihl BG 86 leaf blower, Oct 2026 02 » de Retired electrician, CC0, https://commons.wikimedia.org/wiki/File:Moscow,_Stihl_BG_86_leaf_blower,_Oct_2026_02.jpg
 - Roulement : « Bearing 608z, 608zz » par YouniqueĪdeaStudio, CC BY 4.0, https://sketchfab.com/3d-models/bearing-608z-608zz-4ecd4d5cfffa4cba9d842cb7d7b5d3cf
 - Moteur électrique : « Electric Motor » par Scarecrow_original, CC BY 4.0, https://sketchfab.com/3d-models/electric-motor-66b2ea9eb6e5468d91d814395036a537
