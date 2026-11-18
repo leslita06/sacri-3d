@@ -4,44 +4,57 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>SACRI · La tronçonneuse en 3D, pièce par pièce (maquette de démonstration)</title>
+<title>SACRI · Nos machines en 3D (maquette de démonstration)</title>
 <link rel="icon" href="https://leslita06.github.io/sacri-site-v2/assets/img/logo-transp.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style.css?v=3">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 </head>
 <body>
-<div class="demo-bar"><b>Maquette de démonstration</b><span>Modèle 3D générique et stylisé, non contractuel. Aucune demande n'est envoyée.</span></div>
+<div class="demo-bar"><b>Maquette de démonstration</b><span>Modèles 3D d'objets réels, non contractuels. Aucune demande n'est envoyée.</span></div>
 
 <header class="top">
   <a class="brand" href="https://leslita06.github.io/sacri-catalogue/" target="_blank" rel="noopener" aria-label="SACRI"><img src="https://leslita06.github.io/sacri-site-v2/assets/img/logo-transp.png" alt="SACRI" width="92" height="46"></a>
   <div class="title">
-    <h1>La tronçonneuse, <em>pièce par pièce</em></h1>
-    <p>Touchez une pièce d'usure pour savoir à quoi elle sert et quand la changer.</p>
+    <h1 id="h-title">La tronçonneuse, <em>pièce par pièce</em></h1>
+    <p id="h-sub">Touchez une pièce d'usure pour savoir à quoi elle sert et quand la changer.</p>
   </div>
   <a class="btn btn-ghost hide-sm" href="https://leslita06.github.io/sacri-catalogue/" target="_blank" rel="noopener">Catalogue en ligne</a>
 </header>
 
 <main class="stage">
-  <div id="scene" class="scene" aria-label="Tronçonneuse en 3D, à faire tourner au doigt ou à la souris"></div>
+  <model-viewer id="mv" class="scene"
+    src="assets/models/tronconneuse.glb?v=2" ios-src="assets/models/tronconneuse.usdz?v=2"
+    alt="Tronçonneuse thermique orange et grise en 3D"
+    camera-controls touch-action="pan-y" interaction-prompt="none"
+    environment-image="neutral" exposure="1.05" tone-mapping="aces"
+    shadow-intensity="1.1" shadow-softness="0.9"
+    camera-orbit="300deg 75deg auto" min-camera-orbit="auto auto 20%" max-camera-orbit="auto 100deg auto"
+    ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed" ar-placement="floor"
+    loading="eager" reveal="auto">
+    <button slot="ar-button" class="btn ar-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7zM3 7l9 5 9-5M12 12v10"/></svg>Voir chez moi</button>
+    <div class="loading" slot="progress-bar"><span id="bar"></span></div>
+  </model-viewer>
   <div class="hint" id="hint">Glissez pour tourner · pincez ou molette pour zoomer</div>
-  <div class="noweb" id="noweb" hidden>La vue 3D n'a pas pu s'afficher sur cet appareil. La liste des pièces reste disponible.</div>
+
+  <nav class="picker" id="picker" aria-label="Choisir une machine"></nav>
 
   <div class="controls">
-    <button class="btn" id="explode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span>Vue éclatée</span></button>
     <button class="btn btn-soft" id="reset" aria-label="Recentrer la vue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v5h5"/></svg><span class="hide-sm">Recentrer</span></button>
+    <button class="btn btn-soft hide-lg" id="ar-help" aria-label="Voir chez moi">Voir chez moi</button>
   </div>
 
   <nav class="chips" id="chips" aria-label="Pièces d'usure"></nav>
 
   <aside class="sheet" id="sheet" aria-live="polite" hidden>
     <button class="close" id="close" aria-label="Fermer la fiche">×</button>
-    <div class="eyebrow">Pièce d'usure</div>
+    <div class="eyebrow" id="f-eyebrow">Pièce d'usure</div>
     <h2 id="f-name"></h2>
     <h3>Son rôle</h3>
     <p id="f-role"></p>
-    <h3>Quand la changer</h3>
+    <h3 id="f-when-t">Quand la changer</h3>
     <ul id="f-when"></ul>
     <div class="sheet-ctas">
       <a class="btn" id="f-cat" href="https://leslita06.github.io/sacri-catalogue/" target="_blank" rel="noopener">Voir au catalogue</a>
@@ -50,6 +63,8 @@
     <p class="fine">Repères généraux d'entretien, à faire confirmer par l'atelier SACRI. La notice du fabricant de votre machine fait foi.</p>
   </aside>
 </main>
+
+<footer class="credits" id="credits"></footer>
 
 <div class="modal" id="modal" hidden>
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="m-t">
@@ -62,9 +77,14 @@
   </div>
 </div>
 
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
-</script>
-<script type="module" src="app.js?v=1"></script>
+<div class="modal" id="armodal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="a-t">
+    <button class="close" id="a-close" aria-label="Fermer">×</button>
+    <h2 id="a-t">Voir chez moi</h2>
+    <p class="fine">Ouvrez cette page sur un téléphone Android ou un iPhone, puis touchez « Voir chez moi » : la machine apparaît à taille réelle, posée sur votre sol, grâce à la caméra.</p>
+  </div>
+</div>
+
+<script type="module" src="app.js?v=2"></script>
 </body>
 </html>
