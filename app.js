@@ -1,5 +1,5 @@
 const CATALOGUE = 'https://leslita06.github.io/sacri-catalogue/';
-const V = 4;
+const V = 20261119;
 const isPhone = () => window.matchMedia('(max-width:820px)').matches;
 const $ = (s) => document.querySelector(s);
 
@@ -73,33 +73,33 @@ const ORDER = ['chaine', 'guide', 'pignon', 'filtre', 'bougie', 'lanceur'];
 /* ---------- Les machines ---------- */
 const OBJECTS = {
   tronconneuse: {
-    label: 'Tronçonneuse', alt: 'Tronçonneuse thermique orange et grise en 3D',
+    label: 'Tronçonneuse', icon: 'saw', alt: 'Tronçonneuse thermique orange et grise en 3D',
     title: 'La tronçonneuse, <em>pièce par pièce</em>',
     sub: "Touchez une pièce d'usure pour savoir à quoi elle sert et quand la changer.",
     orbit: '300deg 66deg', fit: { d: 0.72, p: 0.74 }, parts: true,
     credit: '« Chainsaw » par Rescue3D Assets, licence CC BY 4.0 (Sketchfab), modifié : inscription de l\'auteur retirée de la texture, mise à l\'échelle.',
     creditUrl: 'https://sketchfab.com/3d-models/chainsaw-8d1c55a879b046ba940414f5ee57f401'
   },
-  souffleur: {
-    label: 'Souffleur', alt: 'Souffleur thermique blanc et orange en 3D',
-    title: 'Le souffleur, <em>en main</em>',
+  pulverisateur: {
+    label: 'Pulvérisateur', icon: 'drop', alt: 'Pulvérisateur à pression vert en 3D',
+    title: 'Le pulvérisateur, <em>en main</em>',
     sub: "Faites-le tourner, puis posez-le chez vous à taille réelle.",
-    orbit: '120deg 72deg', fit: { d: 0.66, p: 0.71 }, parts: false,
+    orbit: '30deg 75deg', fit: { d: 1, p: 1 }, parts: false,
     sheet: {
-      eyebrow: 'Espaces verts', name: 'Souffleur thermique', devis: 'un souffleur thermique',
-      role: "Il chasse les feuilles, l'herbe coupée et la poussière des allées, des cours et des parkings.",
+      eyebrow: 'Espaces verts et agriculture', name: 'Pulvérisateur à pression', devis: 'un pulvérisateur à pression',
+      role: "Il projette en fines gouttes un traitement liquide sur les cultures, les haies et les espaces verts.",
       whenT: "Bien l'entretenir",
       when: [
-        "Nettoyer le filtre à air et la grille d'aspiration régulièrement.",
-        "Contrôler la bougie si le démarrage devient difficile.",
-        "Faire réviser la machine par l'atelier SACRI en début de saison."
+        "Rincer la cuve, la lance et la buse à l'eau claire après chaque usage.",
+        "Changer la buse si le jet devient irrégulier, et les joints si la pompe perd sa pression.",
+        "Porter des gants et des lunettes pendant le traitement."
       ]
     },
-    credit: "modèle produit à partir de la photo « Moscow, Stihl BG 86 leaf blower » de Retired electrician, domaine public CC0 (Wikimedia Commons).",
-    creditUrl: 'https://commons.wikimedia.org/wiki/File:Moscow,_Stihl_BG_86_leaf_blower,_Oct_2026_02.jpg'
+    credit: '« Pump Sprayer » par kowbassen, licence CC BY 4.0 (Sketchfab), mis à l\'échelle.',
+    creditUrl: 'https://sketchfab.com/3d-models/pump-sprayer-954abe44058f4257a062722e23c0cf56'
   },
   roulement: {
-    label: 'Roulement', alt: 'Roulement à billes en acier en 3D',
+    label: 'Roulement', icon: 'ring', alt: 'Roulement à billes en acier en 3D',
     title: 'Le roulement à billes, <em>en détail</em>',
     sub: 'Approchez-vous : flasques, bagues, finition acier.',
     orbit: '35deg 70deg', fit: { d: 0.77, p: 0.45 }, parts: false,
@@ -116,10 +116,10 @@ const OBJECTS = {
     creditUrl: 'https://sketchfab.com/3d-models/bearing-608z-608zz-4ecd4d5cfffa4cba9d842cb7d7b5d3cf'
   },
   moteur: {
-    label: 'Moteur électrique', alt: 'Moteur électrique industriel en 3D',
+    label: 'Moteur', icon: 'bolt', alt: 'Moteur électrique industriel neuf en 3D',
     title: 'Le moteur électrique, <em>sous tous les angles</em>',
     sub: 'Carcasse à ailettes, boîte à bornes, pattes de fixation.',
-    orbit: '35deg 70deg', fit: { d: 0.79, p: 0.705 }, parts: false,
+    orbit: '35deg 70deg', fit: { d: 0.8, p: 0.75 }, parts: false,
     sheet: {
       eyebrow: 'Industrie', name: 'Moteur électrique', devis: 'un moteur électrique',
       role: "Il entraîne pompes, compresseurs, convoyeurs et machines d'atelier.",
@@ -129,11 +129,18 @@ const OBJECTS = {
         "Signes à surveiller : échauffement, vibrations, bruit des roulements."
       ]
     },
-    credit: '« Electric Motor » par Scarecrow_original, licence CC BY 4.0 (Sketchfab).',
-    creditUrl: 'https://sketchfab.com/3d-models/electric-motor-66b2ea9eb6e5468d91d814395036a537'
+    credit: '« Electric motor » par takeboncog, licence CC BY 4.0 (Sketchfab), mis à l\'échelle.',
+    creditUrl: 'https://sketchfab.com/3d-models/electric-motor-19d028eb4e504314bf909a381b6796eb'
   }
 };
-const OBJ_ORDER = ['tronconneuse', 'moteur', 'souffleur', 'roulement'];
+const OBJ_ORDER = ['tronconneuse', 'moteur', 'pulverisateur', 'roulement'];
+const ICONS = {
+  saw: '<path d="M3 15h11l6-4-6-4H3zM6 7V5h4v2M7 11h4"/>',
+  bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  drop: '<path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>',
+  ring: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>'
+};
+const svg = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]}</svg>`;
 
 /* ---------- Interface ---------- */
 const mv = $('#mv'), chips = $('#chips'), sheet = $('#sheet'), picker = $('#picker');
@@ -141,7 +148,7 @@ let currentObj = 'moteur', devisLabel = null, pendingPart = null;
 
 OBJ_ORDER.forEach((k) => {
   const b = document.createElement('button');
-  b.className = 'pick'; b.dataset.obj = k; b.textContent = OBJECTS[k].label;
+  b.className = 'pick'; b.dataset.obj = k; b.innerHTML = `${svg(OBJECTS[k].icon)}<span>${OBJECTS[k].label}</span>`;
   b.addEventListener('click', () => loadObject(k));
   picker.appendChild(b);
 });
@@ -206,7 +213,10 @@ function distanceFor(orbit, frac) {
   // fit : correction mesurée par objet (la silhouette ne remplit pas toute la boîte englobante)
   const f = OBJECTS[currentObj].fit || { d: 1, p: 1 };
   const fit = isPhone() ? f.p : f.d;
-  return fit * (w / (2 * frac * hv) + depth / 2);
+  const tv = Math.tan(deg(mv.getFieldOfView()) / 2);
+  const byW = w / (2 * frac * hv);
+  const byH = d.y / (2 * 0.72 * tv);
+  return Math.max(fit * byW, byH) + depth / 2;
 }
 function frame(orbit) {
   const o = OBJECTS[currentObj];
@@ -225,7 +235,7 @@ function loadObject(k) {
   mv.src = `assets/models/${k}.glb?v=${V}`;
   mv.iosSrc = `assets/models/${k}.usdz?v=${V}`;
   frame();
-  chips.hidden = !o.parts;
+  chips.hidden = !o.parts; $('#bottom').hidden = !o.parts;
   makeHotspots();
   if (o.parts) { select(null); devisLabel = null; }
   else {
@@ -252,12 +262,14 @@ $('#reset').addEventListener('click', () => frame());
 let lastPhone = isPhone();
 window.addEventListener('resize', () => { clearTimeout(window.__rz); window.__rz = setTimeout(() => { const o = OBJECTS[currentObj]; document.body.classList.toggle('side-sheet', !o.parts && !isPhone() && !sheet.hidden); frame(); }, 250); });
 $('#f-devis').addEventListener('click', () => {
-  $('#m-msg').textContent = `Bonjour SACRI,\nJe souhaite un devis pour ${devisLabel || 'une pièce de tronçonneuse'}.\nModèle de ma machine : …\nMerci de me recontacter.`;
+  $('#m-msg').textContent = `Bonjour SACRI,\nJe souhaite un devis pour ${devisLabel || 'une pièce de tronçonneuse'}.\nModèle de ma machine : (à préciser)\nMerci de me recontacter.`;
+  $('#m-copy span').textContent = 'Copier le message';
   $('#modal').hidden = false;
 });
 $('#m-close').addEventListener('click', () => ($('#modal').hidden = true));
 $('#modal').addEventListener('click', (e) => { if (e.target.id === 'modal') $('#modal').hidden = true; });
-$('#ar-help').addEventListener('click', () => ($('#armodal').hidden = false));
+$('#ar-go').addEventListener('click', () => { if (mv.canActivateAR) mv.activateAR(); else $('#armodal').hidden = false; });
+$('#m-copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText($('#m-msg').textContent); $('#m-copy span').textContent = 'Message copié'; } catch (e) { $('#m-copy span').textContent = 'Sélectionnez le texte pour le copier'; } });
 $('#a-close').addEventListener('click', () => ($('#armodal').hidden = true));
 $('#armodal').addEventListener('click', (e) => { if (e.target.id === 'armodal') $('#armodal').hidden = true; });
 
@@ -270,9 +282,7 @@ mv.addEventListener('load', () => {
 mv.addEventListener('ar-status', (e) => { if (e.detail.status === 'failed') $('#armodal').hidden = false; });
 mv.addEventListener('camera-change', (e) => { if (e.detail.source === 'user-interaction') $('#hint').classList.add('off'); });
 // Sans réalité augmentée possible (ordinateur), le bouton « Voir chez moi » ouvre une aide.
-customElements.whenDefined('model-viewer').then(() => {
-  setTimeout(() => { if (!mv.canActivateAR) document.body.classList.add('no-ar'); }, 1500);
-});
+
 
 const q = new URLSearchParams(location.search);
 loadObject(OBJECTS[q.get('objet')] ? q.get('objet') : 'tronconneuse');
